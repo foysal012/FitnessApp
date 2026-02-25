@@ -75,7 +75,7 @@ class _SecondPageState extends State<SecondPage> {
                    },
                    child: Text("Select"),
                      style: ElevatedButton.styleFrom(
-                      primary: Colors.deepPurple,
+                      // primary: Colors.deepPurple,
                      ),
                    )
                  ],));
