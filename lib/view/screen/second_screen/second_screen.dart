@@ -1,21 +1,21 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:fitnessapp/model.dart';
-import 'package:fitnessapp/thirdpage.dart';
-import 'package:fitnessapp/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
+import '../../../model/excercise_model.dart';
+import '../../widget/widget.dart';
+import '../../../model/model.dart';
+import '../third_screen/third_screen.dart';
 
-class SecondPage extends StatefulWidget {
-   SecondPage({Key? key, this.exercise}) : super(key: key);
+class SecondScreen extends StatefulWidget {
+   SecondScreen({Key? key, this.exercise}) : super(key: key);
 
-  Exercise? exercise;
-
+  final Exercise? exercise;
 
   @override
-  State<SecondPage> createState() => _SecondPageState();
+  State<SecondScreen> createState() => _SecondScreenState();
 }
 
-class _SecondPageState extends State<SecondPage> {
+class _SecondScreenState extends State<SecondScreen> {
 
   double seconds = 3;
   @override
@@ -68,14 +68,14 @@ class _SecondPageState extends State<SecondPage> {
 
                    ElevatedButton(
                      onPressed: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ThirdPage(
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ThirdScreen(
                       exercise: widget.exercise,
                       second: seconds.toInt(),
                     )));
                    },
                    child: Text("Select"),
                      style: ElevatedButton.styleFrom(
-                      primary: Colors.deepPurple,
+                      // primary: Colors.deepPurple,
                      ),
                    )
                  ],));
