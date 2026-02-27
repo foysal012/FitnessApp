@@ -1,5 +1,7 @@
-import 'package:fitnessapp/homepage.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'view/screen/home_screen/home_screen.dart';
+import 'view_model/home_screen/home_screen_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,17 +10,20 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-
-        primarySwatch: Colors.blue,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => HomeScreenProvider())
+        ],
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          debugShowCheckedModeBanner: false,
+          home: HomeScreen(),
+        ),
     );
   }
 }
