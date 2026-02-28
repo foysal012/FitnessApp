@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
-import '../../../model/excercise_model.dart';
-import '../../widget/widget.dart';
-import '../../../model/model.dart';
+import '../../../../model/excercise_model.dart';
+import '../../../widget/widget.dart';
 import '../third_screen/third_screen.dart';
+
 
 class SecondScreen extends StatefulWidget {
    SecondScreen({Key? key, this.exercise}) : super(key: key);

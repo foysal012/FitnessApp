@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'view/screen/home_screen/home_screen.dart';
+import 'view/screen/Home/home_screen/home_screen.dart';
+import 'view/screen/splash/splash_screen1.dart';
+import 'view/screen/splash/splash_screen2.dart';
 import 'view_model/home_screen/home_screen_provider.dart';
 
 void main() {
@@ -22,7 +24,8 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
           ),
           debugShowCheckedModeBanner: false,
-          home: HomeScreen(),
+          // home: HomeScreen(),
+          home: SplashScreen1(),
         ),
     );
   }
