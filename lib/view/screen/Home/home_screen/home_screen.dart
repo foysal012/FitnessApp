@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
-import '../../../view_model/home_screen/home_screen_provider.dart';
-import '../../widget/widget.dart';
+import '../../../../view_model/home_screen/home_screen_provider.dart';
+import '../../../widget/widget.dart';
 import '../second_screen/second_screen.dart';
 
 class HomeScreen extends StatefulWidget {

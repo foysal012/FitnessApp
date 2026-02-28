@@ -2,9 +2,8 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import '../../../model/excercise_model.dart';
-import '../../widget/widget.dart';
-import '../../../model/model.dart';
+import '../../../../model/excercise_model.dart';
+import '../../../widget/widget.dart';
 
 class ThirdScreen extends StatefulWidget {
    ThirdScreen({Key? key, this.exercise, this.second}) : super(key: key);
