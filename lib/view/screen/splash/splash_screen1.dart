@@ -2,6 +2,7 @@ import 'package:fitnessapp/view/screen/splash/splash_screen2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../resources/app_image/app_image.dart';
+import '../introduction/introduction_screen.dart';
 
 class SplashScreen1 extends StatefulWidget {
   const SplashScreen1({super.key});
@@ -20,7 +21,8 @@ class _SplashScreen1State extends State<SplashScreen1> {
 
   Future<void> navigationCheck() async{
     await Future.delayed(Duration(seconds: 2));
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => SplashScreen2()));
+    // Navigator.of(context).push(MaterialPageRoute(builder: (context) => SplashScreen2()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => IntroductionScreen()));
   }
 
   @override
