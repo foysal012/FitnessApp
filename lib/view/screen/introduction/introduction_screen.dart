@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../../resources/app_image/app_image.dart';
+import '../../widget/introduction_screen_widget.dart';
+import '../Home/home_screen/home_screen.dart';
 
 class IntroductionScreen extends StatefulWidget {
   const IntroductionScreen({super.key});
@@ -33,6 +34,11 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
 
   final controller = PageController();
   int currentIndex = 0;
+  
+  Future<void> setValue() async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setBool('isFirstTime', false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,71 +80,132 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
           //       ),
           //     )
           // )
-          Positioned(
-              bottom: 200,
-              left: 160,
-              right: 160,
-              child: GestureDetector(
-                onTap: () => controller.jumpToPage(currentIndex),
-                child: SmoothPageIndicator(
-                    controller: controller,
-                    count: 4
+          ///
+          // Positioned(
+          //     bottom: 200,
+          //     left: 80,
+          //     right: 80,
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //       children: [
+          //         TextButton(
+          //             onPressed: (){
+          //               controller.jumpToPage(4);
+          //             },
+          //             child: Text('Skip',
+          //               style: TextStyle(
+          //                 fontSize: 16,
+          //                 fontWeight: FontWeight.w700,
+          //                 color: Colors.white
+          //               ),
+          //             )
+          //         ),
+          //
+          //         SmoothPageIndicator(
+          //             controller: controller,
+          //             count: 4,
+          //             onDotClicked: (index) {
+          //               controller.jumpToPage(index);
+          //             },
+          //             effect: ColorTransitionEffect(dotColor: Colors.purple, activeDotColor: Colors.white),
+          //         ),
+          //
+          //         currentIndex == 3? TextButton(
+          //             onPressed: (){
+          //               // controller.nextPage(duration: Duration(microseconds: 500), curve: Curves.easeIn);
+          //             },
+          //             child: Text('Done',
+          //               style: TextStyle(
+          //                   fontSize: 16,
+          //                   fontWeight: FontWeight.w700,
+          //                   color: Colors.white
+          //               ),
+          //             )
+          //         ):TextButton(
+          //             onPressed: (){
+          //               controller.nextPage(duration: Duration(microseconds: 500), curve: Curves.easeIn);
+          //             },
+          //             child: Text('Next',
+          //               style: TextStyle(
+          //                 fontSize: 16,
+          //                 fontWeight: FontWeight.w700,
+          //                 color: Colors.white
+          //               ),
+          //             )
+          //         ),
+          //       ],
+          //     )
+          // )
+
+          Container(
+            alignment: Alignment(0, 0.75),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                currentIndex == 3 ? TextButton(
+                    onPressed: () {},
+                    child: Text('',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white
+                      ),
+                    )
+                ) : TextButton(
+                    onPressed: () {
+                      controller.jumpToPage(3);
+                    },
+                    child: Text('Skip',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white
+                      ),
+                    )
                 ),
-              )
+
+                SmoothPageIndicator(
+                  controller: controller,
+                  count: 4,
+                  onDotClicked: (index) {
+                    controller.jumpToPage(index);
+                  },
+                  effect: ColorTransitionEffect(dotColor: Colors.purple,
+                      activeDotColor: Colors.white,
+                      activeStrokeWidth: 15),
+                ),
+
+                currentIndex == 3 ? TextButton(
+                    onPressed: () async{
+                      await setValue();
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreen()));
+                    },
+                    child: Text('Done',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white
+                      ),
+                    )
+                ) : TextButton(
+                    onPressed: () {
+                      controller.nextPage(duration: Duration(milliseconds: 500),
+                          curve: Curves.easeInOut);
+                    },
+                    child: Text('Next',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white
+                      ),
+                    )
+                ),
+              ],
+            ),
           )
         ],
       ),
       
-    );
-  }
-}
-
-
-class IntroductionScreenWidget extends StatelessWidget {
-  const IntroductionScreenWidget({super.key, required this.title, required this.subTitle});
-
-  final String title;
-  final String subTitle;
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage(AppImage.splashImage1), fit: BoxFit.fill)
-              ),
-            ),
-
-            Positioned(
-                right: 100.0,
-                left: 100.0,
-                bottom: 300.0,
-                child: Column(
-                  children: [
-                    Text('${title}',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white
-                      ),
-                    ),
-                    Gap(10.0),
-
-                    Text('${subTitle}',
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.white
-                      ),
-                    )
-                  ],
-                )
-            )
-          ],
-        )
     );
   }
 }

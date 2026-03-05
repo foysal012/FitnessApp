@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'view/screen/Home/home_screen/home_screen.dart';
-import 'view/screen/splash/splash_screen1.dart';
+import 'view/screen/splash/splash_screen.dart';
 import 'view/screen/splash/splash_screen2.dart';
 import 'view_model/home_screen/home_screen_provider.dart';
 
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           ),
           debugShowCheckedModeBanner: false,
           // home: HomeScreen(),
-          home: SplashScreen1(),
+          home: SplashScreen(),
         ),
     );
   }
