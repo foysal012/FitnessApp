@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'view/screen/Home/home_screen/home_screen.dart';
+import 'view/screen/auth/auth_screen.dart';
 import 'view/screen/splash/splash_screen.dart';
 import 'view/screen/splash/splash_screen2.dart';
 import 'view_model/home_screen/home_screen_provider.dart';
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
           ),
           debugShowCheckedModeBanner: false,
           // home: HomeScreen(),
-          home: SplashScreen(),
+          // home: SplashScreen(),
+          home: AuthScreen(),
         ),
     );
   }
