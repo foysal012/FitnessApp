@@ -1,17 +1,19 @@
+import 'package:fitnessapp/view/screen/Home/home_screen/home_screen.dart';
 import 'package:fitnessapp/view/screen/splash/splash_screen2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../resources/app_image/app_image.dart';
 import '../introduction/introduction_screen.dart';
 
-class SplashScreen1 extends StatefulWidget {
-  const SplashScreen1({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<SplashScreen1> createState() => _SplashScreen1State();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreen1State extends State<SplashScreen1> {
+class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
@@ -19,10 +21,22 @@ class _SplashScreen1State extends State<SplashScreen1> {
     navigationCheck();
   }
 
+  bool isFirstTime = true;
+
+  Future<void> getValue() async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    isFirstTime = sharedPreferences.getBool('isFirstTime')??true;
+  }
+
   Future<void> navigationCheck() async{
     await Future.delayed(Duration(seconds: 2));
-    // Navigator.of(context).push(MaterialPageRoute(builder: (context) => SplashScreen2()));
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => IntroductionScreen()));
+    await getValue();
+    if (isFirstTime== true) {
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => IntroductionScreen()));
+    } else {
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreen()));
+    }
+
   }
 
   @override
