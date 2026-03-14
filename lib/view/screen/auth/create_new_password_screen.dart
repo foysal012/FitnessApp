@@ -1,12 +1,13 @@
-import 'package:fitnessapp/view/screen/auth/otp_verification_screen.dart';
-import 'package:fitnessapp/view/screen/auth/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-class ForgetPasswordScreen extends StatelessWidget {
-  ForgetPasswordScreen({super.key});
+import 'reset_password_success_screen.dart';
 
-  final TextEditingController emailTextController = TextEditingController();
+class CreateNewPasswordScreen extends StatelessWidget {
+  CreateNewPasswordScreen({super.key});
+
+  final TextEditingController newPasswordTextController = TextEditingController();
+  final TextEditingController confirmPasswordTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                 ),
                 Gap(100.0),
 
-                Text('Forgot Password?',
+                Text('Create new\npassword',
                   style: TextStyle(
                       fontSize: 22,
                       color: Colors.white,
@@ -51,7 +52,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                 ),
                 Gap(10.0),
 
-                Text('Don\'t worry! It occours. Please enter the email\naddress linked with your account.',
+                Text('Your new password must be unique from those\npreviously used.',
                   style: TextStyle(
                       fontSize: 14,
                       color: Colors.white54,
@@ -59,10 +60,10 @@ class ForgetPasswordScreen extends StatelessWidget {
                       decoration: TextDecoration.underline
                   ),
                 ),
-                Gap(20.0),
+                Gap(40.0),
 
                 TextFormField(
-                  controller: emailTextController,
+                  controller: newPasswordTextController,
                   decoration: InputDecoration(
                     fillColor: Color(0xff786283),
                     filled: true,
@@ -74,15 +75,33 @@ class ForgetPasswordScreen extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(25.0)),
                         borderSide: BorderSide.none
                     ),
-                    hintText: 'Email',
+                    hintText: 'New Password',
                     enabled: true,
-
-                  ),
+                  )
                 ),
-                Gap(30.0),
+                Gap(15.0),
+
+                TextFormField(
+                  controller: confirmPasswordTextController,
+                  decoration: InputDecoration(
+                    fillColor: Color(0xff786283),
+                    filled: true,
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                        borderSide: BorderSide.none
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                        borderSide: BorderSide.none
+                    ),
+                    hintText: 'Confirm Password',
+                    enabled: true,
+                  )
+                ),
+                Gap(60.0),
 
                 GestureDetector(
-                  onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => OTPVerificationScreen())),
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ResetPasswordSuccessScreen())),
                   child: Container(
                     height: 48,
                     alignment: AlignmentGeometry.center,
@@ -90,7 +109,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(25.0))
                     ),
-                    child: Text('Send Code',
+                    child: Text('Reset Password',
                       style: TextStyle(
                           fontSize: 14,
                           color: Color(0xff504158),
@@ -98,34 +117,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
-               Gap(400),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Remember Password?',
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white
-                      ),
-                    ),
-                    Gap(5.0),
-
-                    GestureDetector(
-                      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignupScreen())),
-                      child: Text('Login',
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xffe4b27f)
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Gap(30.0),
+                )
               ],
             ),
           ),

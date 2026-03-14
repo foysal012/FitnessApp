@@ -2,6 +2,8 @@ import 'package:fitnessapp/view/screen/auth/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
+import 'create_new_password_screen.dart';
+
 class OTPVerificationScreen extends StatelessWidget {
   OTPVerificationScreen({super.key});
 
@@ -178,22 +180,36 @@ class OTPVerificationScreen extends StatelessWidget {
                 ),
                 Gap(60.0),
 
-                Container(
-                  height: 48,
-                  alignment: AlignmentGeometry.center,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(25.0))
-                  ),
-                  child: Text('Verify',
-                    style: TextStyle(
-                        fontSize: 14,
-                        color: Color(0xff504158),
-                        fontWeight: FontWeight.bold
+                GestureDetector(
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => CreateNewPasswordScreen())),
+                  child: Container(
+                    height: 48,
+                    alignment: AlignmentGeometry.center,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(25.0))
+                    ),
+                    child: Text('Verify',
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: Color(0xff504158),
+                          fontWeight: FontWeight.bold
+                      ),
                     ),
                   ),
                 ),
-                Gap(350),
+                Gap(30),
+
+                Center(
+                  child: Text('Time Remaining: 6:00',
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white
+                    ),
+                  ),
+                ),
+                Gap(320),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

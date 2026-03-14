@@ -25,8 +25,8 @@ class MyApp extends StatelessWidget {
           ),
           debugShowCheckedModeBanner: false,
           // home: SplashScreen(),
-          // home: AuthScreen(),
-          home: OTPVerificationScreen(),
+          home: AuthScreen(),
+          // home: OTPVerificationScreen(),
         ),
     );
   }

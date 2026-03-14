@@ -1,7 +1,7 @@
 import 'package:fitnessapp/view/screen/auth/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-
+import '../login_introduction/login_introduction_screen1.dart';
 import 'forget_password_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -130,18 +130,21 @@ class LoginScreen extends StatelessWidget {
               ),
               Gap(30.0),
               
-              Container(
-                height: 48,
-                alignment: AlignmentGeometry.center,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(25.0))
-                ),
-                child: Text('Login',
-                  style: TextStyle(
-                      fontSize: 14,
-                      color: Color(0xff504158),
-                      fontWeight: FontWeight.bold
+              GestureDetector(
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginIntroductionScreen1())),
+                child: Container(
+                  height: 48,
+                  alignment: AlignmentGeometry.center,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(25.0))
+                  ),
+                  child: Text('Login',
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xff504158),
+                        fontWeight: FontWeight.bold
+                    ),
                   ),
                 ),
               ),
