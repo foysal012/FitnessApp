@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'view/screen/auth/auth_screen.dart';
 import 'view/screen/auth/otp_verification_screen.dart';
+import 'view/screen/login_introduction/login_introduction_screen1.dart';
 import 'view/screen/login_introduction/login_introduction_screen2.dart';
 import 'view/screen/splash/splash_screen.dart';
 import 'view_model/home_screen/home_screen_provider.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
           // home: SplashScreen(),
           // home: AuthScreen(),
           home: LoginIntroductionScreen2(),
+          // home: LoginIntroductionScreen1(),
           // home: OTPVerificationScreen(),
         ),
     );

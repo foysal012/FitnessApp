@@ -1,3 +1,4 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:slider_button/slider_button.dart';
@@ -78,7 +79,7 @@ class LoginIntroductionScreen2 extends StatelessWidget {
             ),
 
             Align(
-              alignment: AlignmentGeometry.xy(50, 50),
+              alignment: AlignmentGeometry.xy(0, 0),
               child: SmoothPageIndicator(
               controller: controller,
               count: 4,
@@ -87,8 +88,82 @@ class LoginIntroductionScreen2 extends StatelessWidget {
               },
               effect: ColorTransitionEffect(dotColor: Colors.purple,
                   activeDotColor: Colors.white,
-                  activeStrokeWidth: 15),
-            ),)
+                  activeStrokeWidth: 15)
+              )
+            ),
+
+            Positioned(
+                bottom: 400,
+                left: 120,
+                right: 120,
+                child: Container(
+                  height: 180,
+                  width: 80,
+                  decoration: BoxDecoration(
+                    color: Colors.white60,
+                    borderRadius: BorderRadius.all(Radius.circular(30.0))
+                  ),
+                  child: Column(
+                    children: [
+                      Gap(20.0),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CircleAvatar(
+                            radius: 25.0,
+                            backgroundColor: Colors.white,
+                            child: Icon(Icons.dark_mode_outlined, color: Colors.black),
+                          ),
+                          Gap(30.0),
+
+                          Column(
+                            children: [
+                              Text('Drink',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.normal
+                                ),
+                              ),
+                              Gap(2.5),
+
+                              Text('150 ml',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold
+                                ),
+                              )
+                            ]
+                          )
+                        ],
+                      ),
+                      Gap(10.0),
+
+                      SizedBox(
+                        height: 100,
+                        child: BarChart(
+                          BarChartData(
+                            backgroundColor: Colors.purple,
+                            minY: 10.0,
+                            barGroups: [
+                              BarChartGroupData(x: 10),
+                              BarChartGroupData(x: 7),
+                              BarChartGroupData(x: 2),
+                              BarChartGroupData(x: 9),
+                              BarChartGroupData(x: 16)
+                            ],
+
+                          ),
+                          duration: Duration(milliseconds: 150), // Optional
+                          curve: Curves.linear, // Optional
+                        ),
+                      )
+                    ],
+                  ),
+                )
+            )
           ],
         )
     );
