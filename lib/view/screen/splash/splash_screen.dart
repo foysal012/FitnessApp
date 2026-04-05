@@ -2,6 +2,7 @@ import 'package:fitnessapp/view/screen/Home/home_screen/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../../resources/app_image/app_image.dart';
 import '../introduction/introduction_screen.dart';
 
