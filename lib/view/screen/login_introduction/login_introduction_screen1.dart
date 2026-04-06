@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:slider_button/slider_button.dart';
+import 'login_introduction_screen2.dart';
 
 class LoginIntroductionScreen1 extends StatelessWidget {
   const LoginIntroductionScreen1({super.key});
@@ -43,8 +44,9 @@ class LoginIntroductionScreen1 extends StatelessWidget {
                 Gap(400.0),
 
                 SliderButton(
+                  // action: () async => Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginIntroductionScreen2())),
                   action: () async {
-                    // return true; //return false if you want to avoid dismissing the widget in the tree.
+                   return false;
                   },
                   label: Text(
                     "Lets start",
