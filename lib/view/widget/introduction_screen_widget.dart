@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-
 import '../../resources/app_image/app_image.dart';
 
 class IntroductionScreenWidget extends StatelessWidget {

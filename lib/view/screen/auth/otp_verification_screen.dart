@@ -1,7 +1,6 @@
 import 'package:fitnessapp/view/screen/auth/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-
 import 'create_new_password_screen.dart';
 
 class OTPVerificationScreen extends StatelessWidget {

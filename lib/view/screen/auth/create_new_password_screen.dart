@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-
 import 'reset_password_success_screen.dart';
 
 class CreateNewPasswordScreen extends StatelessWidget {

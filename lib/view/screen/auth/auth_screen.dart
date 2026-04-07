@@ -1,7 +1,6 @@
 import 'package:fitnessapp/view/screen/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-
 import '../../../resources/app_image/app_image.dart';
 import 'signup_screen.dart';
 
