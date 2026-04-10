@@ -5,8 +5,50 @@ import 'package:slider_button/slider_button.dart';
 import 'package:swipeable_button_flutter/swipebutton.dart';
 import 'login_introduction_screen2.dart';
 
-class LoginIntroductionScreen1 extends StatelessWidget {
+class LoginIntroductionScreen1 extends StatefulWidget {
   const LoginIntroductionScreen1({super.key});
+
+  @override
+  State<LoginIntroductionScreen1> createState() => _LoginIntroductionScreen1State();
+}
+
+class _LoginIntroductionScreen1State extends State<LoginIntroductionScreen1> {
+  Future<void> goNext(BuildContext context) async{
+    try {
+      debugPrint("Start");
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => LoginIntroductionScreen2(),
+          ),
+        );
+      });
+      debugPrint("End");
+    } catch (e) {
+      debugPrint("Error is ${e.toString()}");
+    }
+  }
+
+  // double _value = 0.0;
+  //
+  // void _handleComplete(BuildContext context) {
+  //   Navigator.push(
+  //     context,
+  //     MaterialPageRoute(builder: (_) => LoginIntroductionScreen2(),),
+  //   );
+  // }
+
+  double _value = 0.0;
+  bool _isNavigated = false; // 🔥 prevent multiple navigation
+
+  void _goNext() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => LoginIntroductionScreen2(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,31 +138,153 @@ class LoginIntroductionScreen1 extends StatelessWidget {
                 //   ),
                 // ),
                 ///
-                Center(
-                  child: SwipeButton(
-                    text: "Submit",
-                    // onSwipeCallback: () {
-                    //   print("Swiped - Perform some operation");
-                    //   Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginIntroductionScreen2()));
-                    // },
-                    onSwipeCallback: () async {
-                      print("Swiped - Perform some operation");
+                // Center(
+                //   child: SwipeButton(
+                //     text: "Submit",
+                //     // onSwipeCallback: () {
+                //     //   print("Swiped - Perform some operation");
+                //     //   Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginIntroductionScreen2()));
+                //     // },
+                //     onSwipeCallback: () async {
+                //       print("Swiped - Perform some operation");
+                //
+                //       await goNext(context);
+                //     },
+                //     height: 80,
+                //   ),
+                // ),
 
-                      await Future.delayed(Duration(milliseconds: 300));
+                ///
+                // Slider(
+                //   value: 10.0,
+                //
+                //   onChanged: (newValue) {
+                //
+                //   },
+                //   min: -50.0,
+                //   max: 50.0,
+                //   divisions: 100,
+                //   onChangeEnd: (newValue) {
+                //
+                //   },
+                // ),
+                ///
+                // Slider(
+                //   value: _value,
+                //   min: 0,
+                //   max: 100,
+                //   divisions: 100,
+                //
+                //   onChanged: (newValue) {
+                //     setState(() {
+                //       _value = newValue;
+                //     });
+                //   },
+                //
+                //   onChangeEnd: (newValue) {
+                //     if (newValue >= 95) {
+                //       _handleComplete(context); // ✅ navigate
+                //     } else {
+                //       // 🔄 reset if not completed
+                //       setState(() {
+                //         _value = 0;
+                //       });
+                //     }
+                //   },
+                // ),
+                ///
+                // 🔥 Slider Button UI
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Slider(
+                    value: _value,
+                    min: 0,
+                    max: 100,
+                    divisions: 100,
 
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => LoginIntroductionScreen2(),
-                        ),
-                      );
+                    onChanged: (newValue) {
+                      setState(() {
+                        _value = newValue;
+                      });
+
+                      // 🔥 detect completion here
+                      if (newValue >= 98 && !_isNavigated) {
+                        _isNavigated = true;
+
+                        Future.delayed(Duration(milliseconds: 100), () {
+                          _goNext();
+                        });
+                      }
                     },
-                    height: 80,
                   ),
                 ),
               ],
             ),
           ),
         )
+    );
+  }
+}
+
+class SlideToNextPage extends StatefulWidget {
+  @override
+  _SlideToNextPageState createState() => _SlideToNextPageState();
+}
+
+class _SlideToNextPageState extends State<SlideToNextPage> {
+  double _value = 0.0;
+
+  void _handleComplete() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => LoginIntroductionScreen2(),),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Custom Slider Button")),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+
+          Text(
+            _value >= 90 ? "Release to Continue" : "Slide to Continue",
+            style: TextStyle(fontSize: 18),
+          ),
+
+          SizedBox(height: 30),
+
+          Slider(
+            value: _value,
+            min: 0,
+            max: 100,
+            divisions: 100,
+
+            onChanged: (newValue) {
+              setState(() {
+                _value = newValue;
+              });
+            },
+
+            onChangeEnd: (newValue) {
+              if (newValue >= 95) {
+                _handleComplete(); // ✅ navigate
+              } else {
+                // 🔄 reset if not completed
+                setState(() {
+                  _value = 0;
+                });
+              }
+            },
+          ),
+        ],
+      ),
     );
   }
 }
