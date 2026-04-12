@@ -52,7 +52,6 @@ dependencies:
   gradient_slide_to_act: ^0.0.2
   swipeable_button_flutter: ^0.0.3
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
