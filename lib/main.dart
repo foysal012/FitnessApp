@@ -26,10 +26,10 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
           ),
           debugShowCheckedModeBanner: false,
-          home: SplashScreen(),
+          // home: SplashScreen(),
           // home: AuthScreen(),
           // home: LoginIntroductionScreen2(),
-          // home: LoginIntroductionScreen1(),
+          home: LoginIntroductionScreen1(),
         ),
     );
   }

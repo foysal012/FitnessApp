@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:gradient_slide_to_act/gradient_slide_to_act.dart';
 import 'package:slider_button/slider_button.dart';
-import 'package:swipeable_button_flutter/swipebutton.dart';
 import 'login_introduction_screen2.dart';
 
 class LoginIntroductionScreen1 extends StatefulWidget {
@@ -27,27 +25,6 @@ class _LoginIntroductionScreen1State extends State<LoginIntroductionScreen1> {
     } catch (e) {
       debugPrint("Error is ${e.toString()}");
     }
-  }
-
-  // double _value = 0.0;
-  //
-  // void _handleComplete(BuildContext context) {
-  //   Navigator.push(
-  //     context,
-  //     MaterialPageRoute(builder: (_) => LoginIntroductionScreen2(),),
-  //   );
-  // }
-
-  double _value = 0.0;
-  bool _isNavigated = false; // 🔥 prevent multiple navigation
-
-  void _goNext() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => LoginIntroductionScreen2(),
-      ),
-    );
   }
 
   @override
@@ -87,141 +64,38 @@ class _LoginIntroductionScreen1State extends State<LoginIntroductionScreen1> {
                 ),
                 Gap(400.0),
 
-                // SliderButton(
-                //   // action: () async => Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginIntroductionScreen2())),
-                //   action: () async {
-                //    return false;
-                //   },
-                //   label: Text(
-                //     "Lets start",
-                //     style: TextStyle(
-                //         color: Color(0xff4a4a4a),
-                //         fontWeight: FontWeight.w500,
-                //         fontSize: 17),
-                //   ),
-                //   icon: Center(
-                //       child: Icon(
-                //         Icons.arrow_forward_ios_rounded,
-                //         color: Colors.black,
-                //         size: 30.0,
-                //         semanticLabel: 'Text to announce in accessibility modes',
-                //       )),
-                //   width: 400,
-                //   radius: 50,
-                //   buttonColor: Color(0xffffffff),
-                //   backgroundColor: Color(0xff0000D5),
-                //   highlightedColor: Colors.white,
-                //   baseColor: Colors.red,
-                // ),
-
-                ///
-
-                // Center(
-                //   child: GradientSlideToAct(
-                //     width: 400,
-                //     text: 'Slide to Go',
-                //     textStyle: TextStyle(color: Colors.white,fontSize: 15),
-                //     backgroundColor: Color(0Xff172663),
-                //     onSubmit: () async{
-                //       debugPrint("Submitted!");
-                //       await Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginIntroductionScreen2()));
-                //     },
-                //
-                //     gradient: const LinearGradient(
-                //         begin: Alignment.topLeft,
-                //         end: Alignment.bottomRight,
-                //         colors: [
-                //           Color(0xff0da6c2),
-                //           Color(0xff0E39C6),
-                //         ]
-                //     ),
-                //   ),
-                // ),
-                ///
-                // Center(
-                //   child: SwipeButton(
-                //     text: "Submit",
-                //     // onSwipeCallback: () {
-                //     //   print("Swiped - Perform some operation");
-                //     //   Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginIntroductionScreen2()));
-                //     // },
-                //     onSwipeCallback: () async {
-                //       print("Swiped - Perform some operation");
-                //
-                //       await goNext(context);
-                //     },
-                //     height: 80,
-                //   ),
-                // ),
-
-                ///
-                // Slider(
-                //   value: 10.0,
-                //
-                //   onChanged: (newValue) {
-                //
-                //   },
-                //   min: -50.0,
-                //   max: 50.0,
-                //   divisions: 100,
-                //   onChangeEnd: (newValue) {
-                //
-                //   },
-                // ),
-                ///
-                // Slider(
-                //   value: _value,
-                //   min: 0,
-                //   max: 100,
-                //   divisions: 100,
-                //
-                //   onChanged: (newValue) {
-                //     setState(() {
-                //       _value = newValue;
-                //     });
-                //   },
-                //
-                //   onChangeEnd: (newValue) {
-                //     if (newValue >= 95) {
-                //       _handleComplete(context); // ✅ navigate
-                //     } else {
-                //       // 🔄 reset if not completed
-                //       setState(() {
-                //         _value = 0;
-                //       });
-                //     }
-                //   },
-                // ),
-                ///
-                // 🔥 Slider Button UI
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Slider(
-                    value: _value,
-                    min: 0,
-                    max: 100,
-                    divisions: 100,
-
-                    onChanged: (newValue) {
-                      setState(() {
-                        _value = newValue;
-                      });
-
-                      // 🔥 detect completion here
-                      if (newValue >= 98 && !_isNavigated) {
-                        _isNavigated = true;
-
-                        Future.delayed(Duration(milliseconds: 100), () {
-                          _goNext();
-                        });
-                      }
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginIntroductionScreen2()));
+                  },
+                  child: SliderButton(
+                    // action: () async => Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginIntroductionScreen2())),
+                    action: () async {
+                     return false;
                     },
+                    label: Text(
+                      "Lets start",
+                      style: TextStyle(
+                          color: Color(0xff4a4a4a),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 17),
+                    ),
+                    icon: Center(
+                        child: Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: Colors.black,
+                          size: 30.0,
+                          semanticLabel: 'Text to announce in accessibility modes',
+                        )),
+                    width: 400,
+                    radius: 50,
+                    buttonColor: Color(0xffffffff),
+                    backgroundColor: Color(0xff0000D5),
+                    highlightedColor: Colors.white,
+                    baseColor: Colors.red,
                   ),
                 ),
+
               ],
             ),
           ),
