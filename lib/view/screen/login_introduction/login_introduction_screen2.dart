@@ -1,171 +1,197 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_unit_ruler/scale_controller.dart';
+import 'package:flutter_unit_ruler/scale_line.dart';
+import 'package:flutter_unit_ruler/scale_unit.dart';
+import 'package:flutter_unit_ruler/unit_ruler.dart';
 import 'package:gap/gap.dart';
-import 'package:slider_button/slider_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class LoginIntroductionScreen2 extends StatelessWidget {
+class LoginIntroductionScreen2 extends StatefulWidget {
   LoginIntroductionScreen2({super.key});
 
+  @override
+  State<LoginIntroductionScreen2> createState() =>
+      _LoginIntroductionScreen2State();
+}
+
+class _LoginIntroductionScreen2State extends State<LoginIntroductionScreen2> {
   final controller = PageController();
+
+  final darkThemeColor = const Color(
+    0xFF0b1f28,
+  ); // Background color for the ruler
+  late final ScaleController
+  _scaleController; // Controller to manage the current value
+
+  double currentHeight = 180.0;
+
+  @override
+  void initState() {
+    _scaleController = ScaleController(value: currentHeight);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-          children: [
-            Container(
-              height: MediaQuery.sizeOf(context).height,
-              width: MediaQuery.sizeOf(context).width,
-              padding: EdgeInsets.all(15.0),
-              decoration: BoxDecoration(
-                // color: Color(0xff504158)
-                  image: DecorationImage(image: AssetImage('assets/image/intro_screen.jpg'), fit: BoxFit.fill)
-              ),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Gap(50.0),
-
-                    Text('Start your\nfitness Journey!',
-                      style: TextStyle(
-                          fontSize: 22,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          decoration: TextDecoration.underline
-                      ),
-                    ),
-                    Gap(10.0),
-
-                    Text('Start your fitness journey\nwith our app\'s guidance and support',
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white54,
-                            fontWeight: FontWeight.w500,
-                            decoration: TextDecoration.underline
-                        )
-                    ),
-                    Gap(400.0),
-
-                    SliderButton(
-                      action: () async {
-                        // return true; //return false if you want to avoid dismissing the widget in the tree.
-                      },
-                      label: Text(
-                        "Lets start",
-                        style: TextStyle(
-                            color: Color(0xff4a4a4a),
-                            fontWeight: FontWeight.w500,
-                            fontSize: 17),
-                      ),
-                      icon: Center(
-                          child: Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: Colors.black,
-                            size: 30.0,
-                            semanticLabel: 'Text to announce in accessibility modes',
-                          )),
-                      width: 400,
-                      radius: 50,
-                      buttonColor: Color(0xffffffff),
-                      backgroundColor: Color(0xff0000D5),
-                      highlightedColor: Colors.white,
-                      baseColor: Colors.red,
-                    ),
-                  ],
-                ),
+      body: Stack(
+        children: [
+          Container(
+            height: MediaQuery.sizeOf(context).height,
+            width: MediaQuery.sizeOf(context).width,
+            padding: EdgeInsets.all(15.0),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/image/intro_screen.jpg'),
+                fit: BoxFit.fill,
               ),
             ),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Gap(50.0),
 
-            Align(
-              alignment: AlignmentGeometry.xy(0, 0),
-              child: SmoothPageIndicator(
+                  Text(
+                    'Start your\nfitness Journey!',
+                    style: TextStyle(
+                      fontSize: 22,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                  Gap(10.0),
+
+                  Text(
+                    'Start your fitness journey\nwith our app\'s guidance and support',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.white54,
+                      fontWeight: FontWeight.w500,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                  Gap(400.0),
+                ],
+              ),
+            ),
+          ),
+
+          Align(
+            alignment: AlignmentGeometry.xy(0, 0),
+            child: SmoothPageIndicator(
               controller: controller,
               count: 4,
               onDotClicked: (index) {
                 controller.jumpToPage(index);
               },
-              effect: ColorTransitionEffect(dotColor: Colors.purple,
-                  activeDotColor: Colors.white,
-                  activeStrokeWidth: 15)
-              )
+              effect: ColorTransitionEffect(
+                dotColor: Colors.purple,
+                activeDotColor: Colors.white,
+                activeStrokeWidth: 15,
+              ),
             ),
+          ),
 
-            Positioned(
-                bottom: 400,
-                left: 120,
-                right: 120,
-                child: Container(
-                  height: 180,
-                  width: 80,
-                  decoration: BoxDecoration(
-                    color: Colors.white60,
-                    borderRadius: BorderRadius.all(Radius.circular(30.0))
-                  ),
-                  child: Column(
-                    children: [
-                      Gap(20.0),
-
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CircleAvatar(
-                            radius: 25.0,
-                            backgroundColor: Colors.white,
-                            child: Icon(Icons.dark_mode_outlined, color: Colors.black),
-                          ),
-                          Gap(30.0),
-
-                          Column(
-                            children: [
-                              Text('Drink',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal
-                                ),
-                              ),
-                              Gap(2.5),
-
-                              Text('150 ml',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold
-                                ),
-                              )
-                            ]
-                          )
-                        ],
-                      ),
-                      Gap(10.0),
-
-                      SizedBox(
-                        height: 100,
-                        child: BarChart(
-                          BarChartData(
-                            backgroundColor: Colors.purple,
-                            minY: 10.0,
-                            barGroups: [
-                              BarChartGroupData(x: 10),
-                              BarChartGroupData(x: 7),
-                              BarChartGroupData(x: 2),
-                              BarChartGroupData(x: 9),
-                              BarChartGroupData(x: 16)
-                            ],
-
-                          ),
-                          duration: Duration(milliseconds: 150), // Optional
-                          curve: Curves.linear, // Optional
+          Positioned(
+            bottom: 400,
+            left: 120,
+            right: 120,
+            child: Column(
+              children: [
+                Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 100.0),
+                      child: UnitRuler(
+                        height: 300,
+                        // Height of the ruler
+                        width: MediaQuery.of(context).size.width,
+                        // Width of the ruler
+                        controller: _scaleController,
+                        // Use scale controller for dynamic updates
+                        scrollDirection: Axis.vertical,
+                        // Set ruler orientation to vertical
+                        backgroundColor: darkThemeColor,
+                        // Background color
+                        scaleUnit: UnitType.length.centimeter,
+                        // Set unit to centimeters
+                        scaleAlignment: Alignment.topRight,
+                        // Align scale to the top-right
+                        scalePadding: const EdgeInsets.only(
+                          left: 0,
+                          right: 40,
+                          top: 10,
                         ),
-                      )
-                    ],
-                  ),
-                )
-            )
-          ],
-        )
+                        // Padding for the scale
+                        scaleMargin: 120,
+                        // Margin for scale placement
+                        scaleMarker: Container(
+                          height: 2,
+                          width: 240,
+                          color: const Color(
+                            0xFF3EB48C,
+                          ), // Color of scale marker
+                        ),
+                        scaleMarkerPositionTop: 10,
+                        // Top position of the scale marker
+                        scaleMarkerPositionLeft: 20,
+                        // Left position of the scale marker
+                        scaleIntervalText: (index, value) =>
+                            value.toInt().toString(),
+                        // Format interval text
+                        scaleIntervalTextStyle: const TextStyle(
+                          color: Color(0xFFBCC2CB),
+                          fontSize: 14,
+                        ),
+                        scaleIntervalTextPosition: 80,
+                        // Text position on the scale
+                        scaleIntervalStyles: const [
+                          ScaleIntervalStyle(
+                            color: Colors.yellow,
+                            width: 35,
+                            height: 2,
+                            scale: -1,
+                          ),
+                          ScaleIntervalStyle(
+                            color: Colors.blue,
+                            width: 50,
+                            height: 2.5,
+                            scale: 0,
+                          ),
+                          ScaleIntervalStyle(
+                            color: Colors.redAccent,
+                            width: 40,
+                            height: 2,
+                            scale: 5,
+                          ),
+                        ],
+                        onValueChanged: (value) => setState(
+                          () => currentHeight = value.toDouble(),
+                        ), // Update height value
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 220,
+                      left: 110,
+                      child: Text(
+                        "${currentHeight.toInt()} ${UnitType.length.centimeter.symbol}",
+                        // Display current height in centimeters
+                        style: const TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
