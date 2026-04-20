@@ -129,12 +129,10 @@ class _LoginIntroductionScreen1State extends State<LoginIntroductionScreen1> {
                     ],
                   ),
                 ),
-                Gap(100.0),
+                Gap(70.0),
 
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginIntroductionScreen2()));
-                  },
+                GestureDetector(
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginIntroductionScreen2())),
                   child: Container(
                       height: 60,
                       width: MediaQuery.sizeOf(context).width,
